@@ -123,7 +123,7 @@ namespace CollorPallete
                 }
             } while (!centroids.SequenceEqual(oldCentroids));
 
-            return centroids.Select(c => Color.FromArgb(c)).ToList();
+            return centroids.Select(c => Color.FromArgb(c)).OrderByDescending(c => CalculateColorDistance(c.ToArgb(), Color.White.ToArgb())).ToList();
         }
 
         private double CalculateColorDistance(int argb1, int argb2)
